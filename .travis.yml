@@ -34,7 +34,7 @@ after_script:
   - git push --force --quiet "https://${blog_ci}@${GH_REF}" master:master
 # E: Build LifeCycle
 
-#branches:
+branches:
   only:
     - myblog
 
