@@ -3,19 +3,21 @@ node_js: stable
 
 # Travis-CI Caching
 cache:
+  apt: true
   directories:
     - node_modules
 
+
+before_script:
+  - npm install hexo-cli -g
 
 # S: Build Lifecycle
 install:
   - npm install
 
-before_script:
- # - npm install -g gulp
-
 
 script:
+  - hexo clean
   - hexo g
 
 after_script:
@@ -24,13 +26,11 @@ after_script:
   - git checkout master
   - cd ../
   - mv .deploy_git/.git/ ./public/
-#after_script:
   - cd ./public
-#  - git init
   - git config user.name "DragonFive"
   - git config user.email "1690302963@qq.com"
   - git add .
-  - git commit -m "Update docs"
+  - git commit -m "Update docs 2"
   - git push --force --quiet "https://${blog_ci}@${GH_REF}" master:master
 # E: Build LifeCycle
 
