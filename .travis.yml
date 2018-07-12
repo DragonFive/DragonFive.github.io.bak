@@ -18,10 +18,15 @@ before_script:
 script:
   - hexo g
 
-
 after_script:
+  - git clone https://${GH_REF} .deploy_git
+  - cd .deploy_git
+  - git checkout master
+  - cd ../
+  - mv .deploy_git/.git/ ./public/
+#after_script:
   - cd ./public
-  - git init
+#  - git init
   - git config user.name "DragonFive"
   - git config user.email "1690302963@qq.com"
   - git add .
@@ -30,8 +35,8 @@ after_script:
 # E: Build LifeCycle
 
 #branches:
-#  only:
-#    - blog_ci
+  only:
+    - myblog
 
 env:
  global:
